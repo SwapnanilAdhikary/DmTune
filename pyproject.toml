@@ -3,6 +3,7 @@ name = "dmtune"
 version = "0.1.0"
 description = "Fine-tune open decision models (Laya-class, typed choice/score/noul) on text, image, video and audio, on laptop hardware."
 readme = "README.md"
+authors = [{ name = "Swapnanil Adhikary", email = "adhikaryswapnanil@gmail.com" }]
 requires-python = ">=3.11"
 license = "Apache-2.0"
 license-files = ["LICENSE"]
@@ -27,6 +28,11 @@ dependencies = [
 media = ["av>=12"]                  # video storyboard + audio decoding
 data = ["pyarrow", "huggingface_hub"]
 test = ["pytest"]
+
+[project.urls]
+Homepage = "https://github.com/SwapnanilAdhikary/DmTune"
+Repository = "https://github.com/SwapnanilAdhikary/DmTune"
+Issues = "https://github.com/SwapnanilAdhikary/DmTune/issues"
 
 [project.scripts]
 dmtune = "dmtune.cli:main"

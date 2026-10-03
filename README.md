@@ -17,6 +17,7 @@ Background on Jev, Laya, Kev and the rest of the decision-model class is in [doc
 ## Quickstart: lime vs green ball (image)
 
 ```bash
+git clone https://github.com/SwapnanilAdhikary/DmTune.git && cd DmTune
 uv venv --python 3.12 .venv && uv pip install --python .venv/bin/python -e ".[media,data,test]"
 .venv/bin/python examples/lime_vs_ball/prepare.py            # ~200 real photos from two public HF datasets
 .venv/bin/dmtune train   examples/lime_vs_ball/recipe.yaml
