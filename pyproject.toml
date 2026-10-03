@@ -1,0 +1,39 @@
+[project]
+name = "dmtune"
+version = "0.1.0"
+description = "Fine-tune open decision models (Laya-class, typed choice/score/noul) on text, image, video and audio, on laptop hardware."
+readme = "README.md"
+requires-python = ">=3.11"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+keywords = ["decision-model", "laya", "jev", "system-one", "fine-tuning", "calibration", "lora", "multimodal"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "laya==0.3.25",          # pinned: we reuse laya.common / laya.calibrate / laya.evals internals
+    "torch>=2.5",
+    "transformers>=5.3",     # ModernVBERT
+    "peft>=0.13",
+    "scikit-learn>=1.5",
+    "pillow",
+    "pyyaml",
+    "matplotlib",
+]
+
+[project.optional-dependencies]
+media = ["av>=12"]                  # video storyboard + audio decoding
+data = ["pyarrow", "huggingface_hub"]
+test = ["pytest"]
+
+[project.scripts]
+dmtune = "dmtune.cli:main"
+
+[build-system]
+requires = ["setuptools>=77"]  # PEP 639 license fields
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["dmtune"]

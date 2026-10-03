@@ -1,0 +1,25 @@
+# Lime vs green ball: an image decision model on a laptop.
+#   python examples/lime_vs_ball/prepare.py
+#   dmtune train examples/lime_vs_ball/recipe.yaml
+#   dmtune compare examples/lime_vs_ball/recipe.yaml
+#   dmtune predict examples/lime_vs_ball/recipe.yaml --image some_photo.jpg
+model:
+  backend: vision                  # ModernVBERT (250M) + Laya-style option-marker head
+  base: ModernVBERT/modernvbert
+data:
+  train: data/train.jsonl
+  val: data/val.jsonl
+  test: data/test.jsonl
+train:
+  mode: lora                       # lora | head | full
+  lora: {r: 16, alpha: 32, dropout: 0.05}
+  epochs: 4
+  micro_batch: 4
+  grad_accum: 2
+  lr_encoder: 2.0e-4
+  lr_head: 5.0e-4                  # the head is new here, so it learns faster than Laya's 1e-4
+  rl_weight: 1.0
+  shuffle_options: true
+  grad_checkpointing: true         # keeps a 4 GB GPU happy; set false on a roomy Mac for speed
+  device: auto
+out: runs/lime_vs_ball

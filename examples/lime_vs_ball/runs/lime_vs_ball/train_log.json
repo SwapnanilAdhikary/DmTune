@@ -1,0 +1,37 @@
+{
+  "train_seconds": 547.2,
+  "peak_memory_gb": 3.744,
+  "device": "mps",
+  "trainable_params_m": 18.15,
+  "log": [
+    {
+      "epoch": 0,
+      "val_nll": 0.6956291869282722,
+      "val_acc": 0.5
+    },
+    {
+      "epoch": 1,
+      "train_ce": 0.732981068820789,
+      "val_nll": 0.6159357499331236,
+      "val_acc": 0.575
+    },
+    {
+      "epoch": 2,
+      "train_ce": 0.394621481187328,
+      "val_nll": 0.01763187102235859,
+      "val_acc": 1.0
+    },
+    {
+      "epoch": 3,
+      "train_ce": 0.09970407621257564,
+      "val_nll": 2.980231883498163e-09,
+      "val_acc": 1.0
+    },
+    {
+      "epoch": 4,
+      "train_ce": 0.01020710778303769,
+      "val_nll": 0.0,
+      "val_acc": 1.0
+    }
+  ]
+}

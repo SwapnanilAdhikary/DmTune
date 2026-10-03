@@ -1,0 +1,19 @@
+# Video decisions on a laptop: each clip becomes one 2x2 storyboard image, then the vision backend judges it.
+# Rows: {"state": {"video": "clips/a.mp4"}, "questions": {...}, "expected": {...}}
+model:
+  backend: vision
+  base: ModernVBERT/modernvbert
+data:
+  train: data/train.jsonl
+  val: data/val.jsonl
+  test: data/test.jsonl
+  preprocess:
+    - storyboard: {frames: 4}      # 9 for a 3x3 grid; more frames = finer time, smaller frames
+train:
+  mode: lora
+  epochs: 4
+  micro_batch: 4
+  grad_accum: 2
+  lr_encoder: 2.0e-4
+  lr_head: 5.0e-4
+out: runs/video

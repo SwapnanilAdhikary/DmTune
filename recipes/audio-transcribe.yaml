@@ -1,0 +1,19 @@
+# Speech decisions (calls, voice notes): Whisper turns state.audio into state.transcript, Laya decides.
+# Rows: {"state": {"audio": "calls/a.wav", "customer": "acme"}, "questions": {...}, "expected": {...}}
+model:
+  backend: laya
+  base: convaiinnovations/laya     # `subfolder: multilingual` for non-English calls
+data:
+  train: data/train.jsonl
+  val: data/val.jsonl
+  test: data/test.jsonl
+  preprocess:
+    - transcribe: {model: openai/whisper-base}   # whisper-small for noisier audio
+train:
+  mode: lora
+  epochs: 3
+  micro_batch: 2                    # 2x8 keeps a 4 GB card safe (4x4 peaked at 4.5 GB on MPS)
+  grad_accum: 8
+  lr_encoder: 2.0e-4
+  lr_head: 1.0e-4
+out: runs/audio

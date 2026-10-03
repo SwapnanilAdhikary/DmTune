@@ -1,0 +1,24 @@
+# Laya (text) on the typed-decisions benchmark: agent traces, support tickets, invoices, security incidents.
+#   python examples/typed_decisions/prepare.py
+#   dmtune train examples/typed_decisions/recipe.yaml
+#   dmtune compare examples/typed_decisions/recipe.yaml
+model:
+  backend: laya
+  base: convaiinnovations/laya     # or add `subfolder: multilingual` for the lighter 322M mmBERT checkpoint
+data:
+  train: data/train.jsonl
+  val: data/val.jsonl
+  test: data/test.jsonl
+train:
+  mode: lora
+  lora: {r: 16, alpha: 32, dropout: 0.05}
+  epochs: 2                        # quick check; Laya's own recipe is 4 epochs on the full split
+  micro_batch: 2                    # 2x8 keeps a 4 GB card safe (4x4 peaked at 4.5 GB on MPS)
+  grad_accum: 8
+  lr_encoder: 2.0e-4
+  lr_head: 1.0e-4                  # Laya's head is already trained
+  rl_weight: 1.0
+  shuffle_options: true
+  grad_checkpointing: true
+  export_laya: false               # true: also write a plain Laya checkpoint (laya-serve / ONNX)
+out: runs/typed_decisions

@@ -1,0 +1,25 @@
+{
+  "train_seconds": 1884.4,
+  "peak_memory_gb": 4.538,
+  "device": "mps",
+  "trainable_params_m": 33.445,
+  "log": [
+    {
+      "epoch": 0,
+      "val_nll": 1.571753112912178,
+      "val_acc": 0.356
+    },
+    {
+      "epoch": 1,
+      "train_ce": 1.0878545366923014,
+      "val_nll": 1.0106437632218004,
+      "val_acc": 0.606
+    },
+    {
+      "epoch": 2,
+      "train_ce": 0.9714226416746775,
+      "val_nll": 0.9848567761778831,
+      "val_acc": 0.646
+    }
+  ]
+}
